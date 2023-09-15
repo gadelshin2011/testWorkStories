@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">testWorkStories</string>
+    <string name="loading_failed">loading stories failed</string>
+    <string name="loading_successful">loading stories was successful loading stories was successful</string>
+</resources>
