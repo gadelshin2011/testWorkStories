@@ -1,7 +1,10 @@
 package com.example.testworkstories.ui.main
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testworkstories.R
+import com.example.testworkstories.data.model.Page
+import com.example.testworkstories.data.model.Story
 import com.example.testworkstories.databinding.FragmentMainBinding
 import com.example.testworkstories.ui.main.adapter.StoriesAdapter
 import com.example.testworkstories.ui.main.viewModel.StoriesViewModel
@@ -22,6 +27,7 @@ import kotlinx.coroutines.launch
 class StoriesFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var adapter: StoriesAdapter
+
 
     companion object {
         fun newInstance() = StoriesFragment()
@@ -51,19 +57,28 @@ class StoriesFragment : Fragment() {
     }
 
     private fun init() {
+
         val itemClickListener = object : ItemClickListener {
-            override fun onItemClickCategory(position: Int) {
-//                val browser = Intent(
-//                    Intent.ACTION_VIEW,
-//                    Uri.parse("")
-//                )
-//                startActivity(browser)
+            override fun onItemClick(position: Int, data: Story) {
+                var url= ""
+                val pagesData: List<Page> = data.pages
+                for (item in pagesData){
+                    url = item.fileUrl
+                }
+
+                val browser = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(url)
+                )
+                startActivity(browser)
             }
         }
         adapter = StoriesAdapter(itemClickListener)
         binding.rcViewPartners.layoutManager = GridLayoutManager(context, 2)
         binding.rcViewPartners.adapter = adapter
     }
+
+
 
 
     private fun showStories() {

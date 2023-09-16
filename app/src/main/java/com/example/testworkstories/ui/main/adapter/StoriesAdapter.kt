@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.testworkstories.data.model.Page
 import com.example.testworkstories.data.model.Story
 import com.example.testworkstories.databinding.RcItemStoriesBinding
 import com.example.testworkstories.ui.main.ItemClickListener
@@ -13,13 +14,16 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<StoriesAdapter.MyHolder>() {
 
     private var listItem: MutableList<Story> = mutableListOf()
+    private var listP:MutableList<Page> = mutableListOf()
+
 
     class MyHolder(private val binding: RcItemStoriesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(story: Story) {
+        fun bind(story: Story ) {
             setImage(story.imageLogo)
             setName(story.newsName)
+
         }
 
         private fun setImage(imageLogo: String) {
@@ -32,22 +36,23 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener) :
 
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val view = RcItemStoriesBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
 
         val holder = MyHolder(view)
-
         view.root.setOnClickListener {
-            itemClickListener.onItemClickCategory(holder.bindingAdapterPosition)
+            val position = holder.bindingAdapterPosition
+            val data = listItem[position]
+            itemClickListener.onItemClick(position,data)
         }
         return holder
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.bind(listItem[position])
+
     }
 
     override fun getItemCount(): Int {

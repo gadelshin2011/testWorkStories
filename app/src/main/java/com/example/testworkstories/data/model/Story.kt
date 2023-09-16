@@ -15,22 +15,11 @@ data class Story(
     val materialUrl: String,
     @SerializedName("news_name")
     val newsName: String,
-    val pages: List<Pageq>,
+    val pages: List<Page>,
     @SerializedName("text_url")
     val textUrl: String,
     @SerializedName("unique_name")
     val uniqueName: String,
     val url: String
-){
-    data class Pageq(
-    val duration: String,
-    @SerializedName("file_type")
-    val fileType: String,
-    @SerializedName("file_url")
-    val fileUrl: String,
-    val id: Int
 )
-
-
-}
 
