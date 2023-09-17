@@ -1,5 +1,6 @@
 package com.example.testworkstories.ui.main.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.testworkstories.R
 import com.example.testworkstories.data.model.Story
@@ -28,5 +29,10 @@ class StoriesViewModel : ViewModel() {
             R.string.loading_failed.toString()
         }
 
+    }
+
+    fun changeLikeOnItem(data: Story) {
+        data.favorite = !data.favorite
+        Log.d("MyLog", data.favorite.toString())
     }
 }
