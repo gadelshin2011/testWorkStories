@@ -78,16 +78,17 @@ class StoriesFragment : Fragment() {
             }
         }
 
-        val itemFavoriteClickListener= object :ItemFavoriteClickListener{
+        val itemFavoriteClickListener = object : ItemFavoriteClickListener {
             override fun onFavoriteClick(data: Story) {
                 viewModel.changeLikeOnItem(data)
             }
 
         }
-        adapter = StoriesAdapter(itemClickListener,itemFavoriteClickListener)
+
+        adapter = StoriesAdapter(itemClickListener, itemFavoriteClickListener)
         binding.rcViewPartners.layoutManager = GridLayoutManager(context, 2)
         binding.rcViewPartners.adapter = adapter
-
+        viewModel.initDatabase()
         binding.rcViewPartners.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)

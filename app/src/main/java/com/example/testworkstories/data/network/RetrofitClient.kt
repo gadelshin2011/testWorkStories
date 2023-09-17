@@ -4,7 +4,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class RetrofitClient {
 
@@ -14,17 +13,17 @@ class RetrofitClient {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
     }
 
-    private fun provideHttpClient(): OkHttpClient{
+    private fun provideHttpClient(): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient.Builder()
         okHttpClientBuilder.addInterceptor(interceptor)
         return okHttpClientBuilder.build()
     }
 
-    var retrofit : InterfaceApi = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+    var retrofit: Api = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
         .client(provideHttpClient())
         .baseUrl(
             BASE_URL
-        ).build().create(InterfaceApi::class.java)
+        ).build().create(Api::class.java)
 
     private companion object {
         const val BASE_URL = "https://utv.ru"
