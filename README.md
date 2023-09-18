@@ -36,7 +36,7 @@
 
 
 
-### Ссылка на готовое приложение можно скачать по ссылке https://drive.google.com/file/d/1Y4YhIPQT5wAburctmLA6cwRMdTmpNgk6/view?usp=drive_link
+### Ссылка на готовое приложение можно скачать по ссылке https://github.com/gadelshin2011/testWorkStories/blob/master/app-debug.apk
 
 
 
