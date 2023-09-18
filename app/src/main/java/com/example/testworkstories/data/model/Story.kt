@@ -7,8 +7,10 @@ data class Story(
     val imageLogo: String,
     @SerializedName("news_name")
     val newsName: String,
-    val pages: List<Page>,
+    @SerializedName("url")
     val url: String,
-    var favorite: Boolean = false
+    @SerializedName("unique_name")
+    val uniqueName: String,
+    var favorite: Boolean
 )
 

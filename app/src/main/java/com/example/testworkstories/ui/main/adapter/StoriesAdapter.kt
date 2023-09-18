@@ -109,7 +109,7 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
         }
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return newList[newItemPosition].newsName == oldList[oldItemPosition].newsName
+            return newList[newItemPosition].uniqueName == oldList[oldItemPosition].uniqueName
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

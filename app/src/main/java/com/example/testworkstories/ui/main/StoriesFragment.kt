@@ -20,7 +20,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.testworkstories.data.model.Page
 import com.example.testworkstories.data.model.Story
 import com.example.testworkstories.databinding.FragmentMainBinding
 import com.example.testworkstories.ui.main.adapter.StoriesAdapter
@@ -65,11 +64,7 @@ class StoriesFragment : Fragment() {
     private fun initAdapter() {
         val itemClickListener = object : ItemClickListener {
             override fun onItemClick(position: Int, data: Story) {
-                var url = ""
-                val pagesData: List<Page> = data.pages
-                for (item in pagesData) {
-                    url = item.fileUrl
-                }
+                val url = data.url
                 val browser = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(url)
@@ -82,7 +77,6 @@ class StoriesFragment : Fragment() {
             override fun onFavoriteClick(data: Story) {
                 viewModel.changeLikeOnItem(data)
             }
-
         }
         adapter = StoriesAdapter(itemClickListener,itemFavoriteClickListener)
         binding.rcViewPartners.layoutManager = GridLayoutManager(context, 2)
