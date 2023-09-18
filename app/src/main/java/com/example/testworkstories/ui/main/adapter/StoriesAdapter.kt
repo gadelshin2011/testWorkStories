@@ -16,7 +16,6 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
 
     private var listItem: MutableList<Story> = mutableListOf()
 
-
     class MyHolder(
         private val binding: RcItemStoriesBinding,
         private val itemFavoriteClickListener: ItemFavoriteClickListener
@@ -31,9 +30,7 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
                 itemFavoriteClickListener.onFavoriteClick(story)
                 binding.imageStateFavoriteButton.isSelected = story.favorite
             }
-
         }
-
         private fun setImageFav(favorite: Boolean) {
             binding.imageStateFavoriteButton.isSelected = favorite
         }
@@ -45,9 +42,7 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
         private fun setName(newsName: String) {
             binding.nameStories.text = newsName
         }
-
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val view = RcItemStoriesBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -61,26 +56,22 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
         }
         return holder
     }
-
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.bind(listItem[position])
-
     }
-
     override fun getItemCount(): Int {
         return listItem.size
     }
 
-        @SuppressLint("NotifyDataSetChanged")
     fun setStories(list: List<Story>) {
-        if (list.isNotEmpty() || list != listItem ){
-
-
+           val diffCallback = StoryDiffUtil(
+                newList = listItem,
+                oldList = list
+            )
+            val diffList = DiffUtil.calculateDiff(diffCallback)
             listItem.clear()
             listItem.addAll(list)
-            notifyDataSetChanged()
-        }
-
+            diffList.dispatchUpdatesTo(this)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -98,7 +89,7 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
 
     }
 
-    class PersonDiffUtil(
+    class StoryDiffUtil(
         val newList: List<Story>,
         val oldList: List<Story>,
     ) : DiffUtil.Callback() {
@@ -111,7 +102,7 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
         }
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return newList[newItemPosition].newsName == oldList[oldItemPosition].newsName
+            return newList[newItemPosition].uniqueName == oldList[oldItemPosition].uniqueName
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

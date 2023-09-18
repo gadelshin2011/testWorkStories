@@ -21,7 +21,6 @@ class DataStoreManager(context: Context) {
             val items = preferences[KEY_ITEMS]?.toMutableSet() ?: mutableSetOf()
             items.add(item)
             preferences[KEY_ITEMS] = items
-            Log.d("MyLogg", preferences[KEY_ITEMS].toString())
         }
     }
 
@@ -47,10 +46,8 @@ class DataStoreManager(context: Context) {
             val items = preferences[KEY_ITEMS]?.toMutableSet() ?: mutableSetOf()
             items.remove(item)
             preferences[KEY_ITEMS] = items
-            Log.d("MyLogg", preferences[KEY_ITEMS].toString())
         }
     }
-
 
     companion object {
         private val KEY_ITEMS = stringSetPreferencesKey("key_items")
