@@ -122,8 +122,7 @@ class StoriesFragment : Fragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.requestStories()
             }
-        }
-        if (isInternet == false) {
+        }else {
             binding.searchTextInputLayout.visibility = View.GONE
             binding.rcViewPartners.visibility = View.GONE
             binding.checkedInternetLayout.visibility = View.VISIBLE
