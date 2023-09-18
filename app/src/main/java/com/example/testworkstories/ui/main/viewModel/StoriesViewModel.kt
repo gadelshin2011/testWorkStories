@@ -2,6 +2,7 @@ package com.example.testworkstories.ui.main.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testworkstories.data.dataStore.DataStoreManager
@@ -26,7 +27,6 @@ class StoriesViewModel(apl: Application) : AndroidViewModel(apl) {
     suspend fun requestStories(): String {
         val result = webRepo.retrofit.getStories()
 
-
         return if (result.isSuccessful) {
             val itemFilterFavorite = dates.setFavorites(result.body()?.detail!!.story)
             _stories.value = itemFilterFavorite
@@ -44,10 +44,16 @@ class StoriesViewModel(apl: Application) : AndroidViewModel(apl) {
         if (data.favorite) {
             viewModelScope.launch(Dispatchers.IO) {
                 dates.saveItemStory(data.uniqueName)
+                viewModelScope.launch {
+                    Toast.makeText(getApplication(), "Добавлено в избранное" , Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
             viewModelScope.launch(Dispatchers.IO) {
                 dates.deleteItem(data.uniqueName)
+                viewModelScope.launch {
+                    Toast.makeText(getApplication(), "Удалено из избранного" , Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

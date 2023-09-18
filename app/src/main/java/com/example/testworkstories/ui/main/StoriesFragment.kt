@@ -24,12 +24,13 @@ import com.example.testworkstories.data.model.Story
 import com.example.testworkstories.databinding.FragmentMainBinding
 import com.example.testworkstories.ui.main.adapter.StoriesAdapter
 import com.example.testworkstories.ui.main.viewModel.StoriesViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class StoriesFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var adapter: StoriesAdapter
-
+    var checkInet = CheckInternetConnection()
 
     companion object {
         fun newInstance() = StoriesFragment()
@@ -59,6 +60,13 @@ class StoriesFragment : Fragment() {
         initAdapter()
         showStories()
         searchView()
+        setListener()
+    }
+
+    private fun setListener() {
+        binding.button.setOnClickListener {
+            activity?.finish()
+        }
     }
 
     private fun initAdapter() {
@@ -73,16 +81,18 @@ class StoriesFragment : Fragment() {
             }
         }
 
-        val itemFavoriteClickListener= object :ItemFavoriteClickListener{
+        val itemFavoriteClickListener = object : ItemFavoriteClickListener {
             override fun onFavoriteClick(data: Story) {
                 viewLifecycleOwner.lifecycleScope.launch {
                     viewModel.changeLikeOnItem(data)
+
                 }
 
             }
 
         }
-        adapter = StoriesAdapter(itemClickListener,itemFavoriteClickListener)
+
+        adapter = StoriesAdapter(itemClickListener, itemFavoriteClickListener)
         binding.rcViewPartners.layoutManager = GridLayoutManager(context, 2)
         binding.rcViewPartners.adapter = adapter
 
@@ -105,8 +115,18 @@ class StoriesFragment : Fragment() {
                 }
             }
         }
-        lifecycleScope.launch {
-            viewModel.requestStories()
+
+        val isInternet = context?.let { checkInet.isInternetAvailable(it) }
+
+        if (isInternet == true) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.requestStories()
+            }
+        }
+        if (isInternet == false) {
+            binding.searchTextInputLayout.visibility = View.GONE
+            binding.rcViewPartners.visibility = View.GONE
+            binding.checkedInternetLayout.visibility = View.VISIBLE
         }
     }
 

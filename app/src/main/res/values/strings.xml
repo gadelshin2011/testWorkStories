@@ -5,4 +5,6 @@
     <string name="example_text">TextView</string>
     <string name="todo">TODO</string>
     <string name="search_hint">Поиск</string>
+    <string name="exit">Закрыть приложение</string>
+    <string name="error_checked_internet">Загрузка прервана. Пожалуйста, проверьте интернет соединение.</string>
 </resources>
