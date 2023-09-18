@@ -19,13 +19,22 @@
 Использовать паттерн MVVM. Стек технологий по усмотрению
 
 ### Как выглядит готовое приложение: 
-![Снимок экрана от 2023-09-18 20-38-35](https://github.com/gadelshin2011/testWorkStories/assets/79186438/3b719c02-205f-4c12-ab1c-856fc8791a60)
-![Снимок экрана от 2023-09-18 20-38-52](https://github.com/gadelshin2011/testWorkStories/assets/79186438/272c3065-ffd2-4039-acdc-bcf234705b0d)
-![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/9ab00f4b-32f7-4aae-a98a-dd7b268844bf)
-![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/7cb7c50a-202c-4343-8888-d56909c0a176)
-![Снимок экрана от 2023-09-18 20-39-38](https://github.com/gadelshin2011/testWorkStories/assets/79186438/c86caaa8-9fff-4e1c-bd86-9c63953cb537)
-![Снимок экрана от 2023-09-18 20-40-00](https://github.com/gadelshin2011/testWorkStories/assets/79186438/f2c75183-6d59-4945-9911-fb27a54e9e49)
-![Снимок экрана от 2023-09-18 20-39-19](https://github.com/gadelshin2011/testWorkStories/assets/79186438/d75bb999-873a-4631-ad58-baf1f4c31ce9)
+![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/94c2fe1f-9363-4dcb-a9e5-346cfcd63cfb)
+![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/e385b075-e368-4d83-8bfc-b9be7235ea1e)
+
+![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/dca92d21-b87c-472a-8061-1fecfd979815)
+![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/08ace7e6-9cc8-4c9c-ae25-715e3de5916d)
+
+![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/f3306ff1-f1fd-4a2d-b8b7-d4925924e80a)
+![image](https://github.com/gadelshin2011/testWorkStories/assets/79186438/23ced8cb-6e67-4149-a772-ebac6a11971a)
+
+
+
+
+
+
+
+
 
 ### Ссылка на готовое приложение можно скачать по ссылке https://drive.google.com/file/d/1Y4YhIPQT5wAburctmLA6cwRMdTmpNgk6/view?usp=drive_link
 
