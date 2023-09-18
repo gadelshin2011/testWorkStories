@@ -38,10 +38,3 @@
 
 ### Ссылка на готовое приложение можно скачать по ссылке https://github.com/gadelshin2011/testWorkStories/blob/master/app-debug.apk
 
-
-
-
-
-
-
-
