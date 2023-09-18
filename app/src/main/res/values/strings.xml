@@ -4,4 +4,5 @@
     <string name="loading_successful">loading stories was successful loading stories was successful</string>
     <string name="example_text">TextView</string>
     <string name="todo">TODO</string>
+    <string name="search_hint">Поиск</string>
 </resources>

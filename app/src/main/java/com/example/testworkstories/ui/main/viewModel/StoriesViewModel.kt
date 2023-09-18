@@ -1,16 +1,23 @@
 package com.example.testworkstories.ui.main.viewModel
 
-import androidx.lifecycle.ViewModel
-import com.example.testworkstories.R
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.testworkstories.data.dataStore.DataStoreManager
 import com.example.testworkstories.data.model.Story
 import com.example.testworkstories.data.network.RetrofitClient
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class StoriesViewModel : ViewModel() {
+class StoriesViewModel(apl: Application) : AndroidViewModel(apl) {
     private val webRepo = RetrofitClient()
+    private val dates = DataStoreManager(getApplication())
+    // val listItem:Array<String> = arrayOf()
 
-    private val _stories : MutableStateFlow<List<Story>> = MutableStateFlow(
+    private val _stories: MutableStateFlow<List<Story>> = MutableStateFlow(
         emptyList()
     )
 
@@ -19,14 +26,32 @@ class StoriesViewModel : ViewModel() {
     suspend fun requestStories(): String {
         val result = webRepo.retrofit.getStories()
 
-       // Log.d("MyLog", "$result")
 
-        return if (result.isSuccessful){
-            _stories.value = result.body()?.detail!!.story
-            R.string.loading_successful.toString()
-        } else{
-            R.string.loading_failed.toString()
+        return if (result.isSuccessful) {
+            val itemFilterFavorite = dates.setFavorites(result.body()?.detail!!.story)
+            _stories.value = itemFilterFavorite
+            "Ok"
+        } else {
+            "Loading failed"
         }
 
     }
+
+    fun changeLikeOnItem(data: Story) {
+        data.favorite = !data.favorite
+        Log.d("MyLog", data.favorite.toString())
+
+        if (data.favorite) {
+            viewModelScope.launch(Dispatchers.IO) {
+                dates.saveItemStory(data.uniqueName)
+            }
+        } else {
+            viewModelScope.launch(Dispatchers.IO) {
+                dates.deleteItem(data.uniqueName)
+            }
+        }
+    }
+
+
 }
+

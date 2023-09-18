@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Gray">#F2F2F2</color>
+    <color name="edit_text_border_color">#1E000000</color>
 </resources>
