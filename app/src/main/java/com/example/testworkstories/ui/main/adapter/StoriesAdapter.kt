@@ -74,6 +74,8 @@ class StoriesAdapter(private val itemClickListener: ItemClickListener, private v
         @SuppressLint("NotifyDataSetChanged")
     fun setStories(list: List<Story>) {
         if (list.isNotEmpty() || list != listItem ){
+
+
             listItem.clear()
             listItem.addAll(list)
             notifyDataSetChanged()
