@@ -40,8 +40,9 @@
                 android:id="@+id/name_stories"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"     
                 android:text="@string/example_text"
                 android:textSize="12sp" />
 
