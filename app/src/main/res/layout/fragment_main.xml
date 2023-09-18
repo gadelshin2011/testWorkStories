@@ -8,24 +8,56 @@
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/white"
     tools:context=".ui.main.StoriesFragment">
 
+
+    <LinearLayout
+        android:id="@+id/checkedInternetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Gray"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:padding="4dp"
+            android:text="@string/error_checked_internet"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="@string/exit"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchTextInputLayout"
         style="@style/TextInputLayoutBoxColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
         android:hint="@string/search_hint"
+        android:padding="6dp"
         app:endIconMode="clear_text"
         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_story"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            />
+            android:layout_height="56dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -36,5 +68,6 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/rc_item_stories" />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
